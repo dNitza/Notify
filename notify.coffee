@@ -17,12 +17,12 @@ class Queue
 notify_messages = new Queue
 notify_notifying = false
 
-p.publish = ->
+publish = ->
 	notify_notifying = true
 	msg = notify_messages.last()
-	p.display msg
+	display msg
 	
-p.display = (msg) ->
+display = (msg) ->
 	$(msg.container).queue (next) ->
 		$(@).addClass(msg.messageClass).slideDown().html(msg.message).delay(msg.timing).slideUp ->
 			$(msg.container).removeClass(msg.messageClass, ->
@@ -34,9 +34,16 @@ p.display = (msg) ->
 			)
 		next()	
 
-$.fn.notify = (args) ->
+$.notify = (args) ->
+	defaults = {
+		message: 'hello world',
+		container: '#notify',
+		messageClass: 'success',
+		timing: 1000		
+	}
+	options = $.extend(defaults, args || {})
 	if notify_notifying
-		notify_messages.enqueue(args)
+		notify_messages.enqueue(options)
 	else
-		notify_messages.enqueue(args)
+		notify_messages.enqueue(options)
 		publish notify_messages
