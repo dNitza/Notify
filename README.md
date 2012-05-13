@@ -30,10 +30,21 @@ It's super easy to implement, all you need to do is include jQuery and call _$.n
 
 ###Options
 
-Message: The message you want to publish.
-Container: The containing element (with css selector).
-MessageClass: The class you wish to give the notification div (eg. you may want to add a success or error class).
-Timing: Time you want the notification to display for (ms).
+####Message (string): 
+The message you want to publish.
+######default: 'hello world'
+
+####Container (string): 
+The containing element (with css selector).
+######default: '#notify'
+
+####MessageClass (string):
+The class you wish to give the notification div (eg. you may want to add a success or error class).
+######default: 'success'
+
+####Timing (string/integer):
+Time you want the notification to display for (ms).
+######default: 1000
 
 ###Demo
 [http://www.dnitza.com/freebie/notify/](http://www.dnitza.com/freebie/notify/)
