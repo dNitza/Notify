@@ -7,8 +7,6 @@ class Queue
 		@data.push obj
 	last: () ->
 		@data.shift()
-	peek: =>
-		@data[0]
 	clear: =>
 		@data = []
 	size: =>
