@@ -53,7 +53,7 @@ publish = function() {
 
 display = function(msg) {
   return $(msg.container).queue(function(next) {
-    $(this).addClass(msg.messageClass).slideDown().html(msg.message).delay(msg.timing).slideUp(function() {
+    $(this).addClass(msg.messageClass).$[msg.showAnimation]().html(msg.message).delay(msg.timing).$[hideAnimation](function() {
       return $(msg.container).removeClass(msg.messageClass, function() {}, notify_messages.isEmpty() ? notify_notifying = false : (publish(notify_messages), $('.queue span').html(notify_messages.size())));
     });
     return next();
@@ -66,6 +66,8 @@ $.notify = function(args) {
     message: 'hello world',
     container: '#notify',
     messageClass: 'success',
+    showAnimation: 'slideDown',
+    hideAnimation: 'slideUp',
     timing: 1000
   };
   options = $.extend(defaults, args || {});

@@ -42,6 +42,14 @@ The containing element (with css selector).
 The class you wish to give the notification div (eg. you may want to add a success or error class).
 ######default: 'success'
 
+####showAnimation (string):
+The jQuery function/animation you'd like to show your notification.
+######default: 'slideDown'
+
+####hideAnimation (string):
+The jQuery function/animation you'd like to hide your notification.
+######default: 'slideUp'
+
 ####Timing (string/integer):
 Time you want the notification to display for (ms).
 ######default: 1000

@@ -22,7 +22,7 @@ publish = ->
 	
 display = (msg) ->
 	$(msg.container).queue (next) ->
-		$(@).addClass(msg.messageClass).slideDown().html(msg.message).delay(msg.timing).slideUp ->
+		$(@).addClass(msg.messageClass).$[msg.showAnimation]().html(msg.message).delay(msg.timing).$[hideAnimation] ->
 			$(msg.container).removeClass(msg.messageClass, ->
 			if notify_messages.isEmpty()
 				notify_notifying = false
@@ -37,6 +37,8 @@ $.notify = (args) ->
 		message: 'hello world',
 		container: '#notify',
 		messageClass: 'success',
+		showAnimation: 'slideDown',
+		hideAnimation: 'slideUp',
 		timing: 1000		
 	}
 	options = $.extend(defaults, args || {})
