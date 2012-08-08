@@ -10,6 +10,8 @@ Queue = (function() {
 
     this.clear = __bind(this.clear, this);
 
+    this.peek = __bind(this.peek, this);
+
     this.enqueue = __bind(this.enqueue, this);
 
     this.isEmpty = __bind(this.isEmpty, this);
@@ -26,6 +28,10 @@ Queue = (function() {
 
   Queue.prototype.last = function() {
     return this.data.shift();
+  };
+
+  Queue.prototype.peek = function() {
+    return this.data[0];
   };
 
   Queue.prototype.clear = function() {
@@ -53,7 +59,7 @@ publish = function() {
 
 display = function(msg) {
   return $(msg.container).queue(function(next) {
-    $(this).addClass(msg.messageClass).$[msg.showAnimation]().html(msg.message).delay(msg.timing).$[hideAnimation](function() {
+    $(this).addClass(msg.messageClass)[msg.showAnimation]().html(msg.message).delay(msg.timing)[msg.hideAnimation](function() {
       return $(msg.container).removeClass(msg.messageClass, function() {}, notify_messages.isEmpty() ? notify_notifying = false : (publish(notify_messages), $('.queue span').html(notify_messages.size())));
     });
     return next();
@@ -78,3 +84,21 @@ $.notify = function(args) {
     return publish(notify_messages);
   }
 };
+
+$(function() {
+  $("pre").addClass("prettyprint");
+  prettyPrint();
+  $('.trigger.good').click(function(e) {
+    $.notify();
+    $('.queue span').html(notify_messages.size());
+    return e.preventDefault();
+  });
+  return $('.trigger.bad').click(function(e) {
+    $.notify({
+      message: 'goodbye world',
+      messageClass: 'error'
+    });
+    $('.queue span').html(notify_messages.size());
+    return e.preventDefault();
+  });
+});

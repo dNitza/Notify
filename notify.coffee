@@ -7,6 +7,8 @@ class Queue
 		@data.push obj
 	last: () ->
 		@data.shift()
+	peek: =>
+		@data[0]
 	clear: =>
 		@data = []
 	size: =>
@@ -22,7 +24,7 @@ publish = ->
 	
 display = (msg) ->
 	$(msg.container).queue (next) ->
-		$(@).addClass(msg.messageClass).$[msg.showAnimation]().html(msg.message).delay(msg.timing).$[hideAnimation] ->
+		$(@).addClass(msg.messageClass)[msg.showAnimation]().html(msg.message).delay(msg.timing)[msg.hideAnimation] ->
 			$(msg.container).removeClass(msg.messageClass, ->
 			if notify_messages.isEmpty()
 				notify_notifying = false
@@ -47,3 +49,19 @@ $.notify = (args) ->
 	else
 		notify_messages.enqueue(options)
 		publish notify_messages
+		
+$ ->
+	$("pre").addClass("prettyprint")
+	prettyPrint()
+
+	$('.trigger.good').click (e) ->
+		$.notify()
+		$('.queue span').html(notify_messages.size())
+		e.preventDefault()
+	$('.trigger.bad').click (e) ->
+		$.notify({
+			message: 'goodbye world',
+			messageClass: 'error'
+		})
+		$('.queue span').html(notify_messages.size())
+		e.preventDefault()		
