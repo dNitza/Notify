@@ -49,19 +49,3 @@ $.notify = (args) ->
 	else
 		notify_messages.enqueue(options)
 		publish notify_messages
-		
-$ ->
-	$("pre").addClass("prettyprint")
-	prettyPrint()
-
-	$('.trigger.good').click (e) ->
-		$.notify()
-		$('.queue span').html(notify_messages.size())
-		e.preventDefault()
-	$('.trigger.bad').click (e) ->
-		$.notify({
-			message: 'goodbye world',
-			messageClass: 'error'
-		})
-		$('.queue span').html(notify_messages.size())
-		e.preventDefault()		

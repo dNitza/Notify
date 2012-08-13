@@ -84,21 +84,3 @@ $.notify = function(args) {
     return publish(notify_messages);
   }
 };
-
-$(function() {
-  $("pre").addClass("prettyprint");
-  prettyPrint();
-  $('.trigger.good').click(function(e) {
-    $.notify();
-    $('.queue span').html(notify_messages.size());
-    return e.preventDefault();
-  });
-  return $('.trigger.bad').click(function(e) {
-    $.notify({
-      message: 'goodbye world',
-      messageClass: 'error'
-    });
-    $('.queue span').html(notify_messages.size());
-    return e.preventDefault();
-  });
-});
